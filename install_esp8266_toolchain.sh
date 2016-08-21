@@ -6,6 +6,9 @@
 sudo apt-get -y install git autoconf build-essential
 sudo apt-get -y install gperf bison flex texinfo libtool libncurses5-dev wget gawk python-serial libexpat-dev dpkg-dev unzip
 sudo apt-get -y install help2man python python2.7-dev
+
+# for ftdi/usb serial drivers
+sudo apt-get -y install linux-image-extra-virtual
  
 # Install the esp-open-sdk toolchain
 cd /opt
