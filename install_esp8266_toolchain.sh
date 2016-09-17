@@ -3,6 +3,8 @@
 #  INSTALL pfalcon:esp-open-sdk
 # ==================================================================================
 
+LIB_FOLDER=/vagrant/lib
+
 # based on instructions at https://github.com/pfalcon/esp-open-sdk
 # .. and here: https://forum.micropython.org/viewtopic.php?t=1965
 
@@ -15,22 +17,21 @@ sudo apt-get -y install help2man python python2.7-dev
 sudo apt-get -y install linux-image-extra-virtual
  
 # Install the esp-open-sdk toolchain
-cd /opt
+mkdir -p /vagrant/lib
+cd /vagrant/lib
 sudo git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
 sudo chown -R vagrant esp-open-sdk
 cd esp-open-sdk
 make STANDALONE=y
 
 # configure profile 
-echo 'PATH=$PATH:/opt/esp-open-sdk/xtensa-lx106-elf/bin' >> ~/.profile
-echo 'PATH=$PATH:/opt/esp-open-sdk/esptool' >> ~/.profile
-PATH=$PATH:/opt/esp-open-sdk/xtensa-lx106-elf/bin
-PATH=$PATH:/opt/esp-open-sdk/esptool
+echo "PATH=$PATH:$LIB_FOLDER/esp-open-sdk/xtensa-lx106-elf/bin" >> ~/.profile
+echo "PATH=$PATH:$LIB_FOLDER/esp-open-sdk/esptool" >> ~/.profile
+PATH=$PATH:$LIB_FOLDER/esp-open-sdk/xtensa-lx106-elf/bin
+PATH=$PATH:$LIB_FOLDER/esp-open-sdk/esptool
  
 # grant access to serial port
 sudo adduser vagrant dialout
-
-
 
 
 
@@ -44,13 +45,12 @@ sudo apt-get install -y \
               gawk ncurses-dev libexpat1-dev python sed python-serial python-dev \
               srecord bc git help2man
 
-# create /opt folder
-sudo mkdir -p /opt
 
 # check out the Sming repo from github
-cd /opt
+mkdir -p /vagrant/lib
+cd /vagrant/lib
 sudo git clone https://github.com/SmingHub/Sming.git
-sudo chown -R vagrant /opt/Sming
+sudo chown -R vagrant $LIB_FOLDER/Sming
 
 # ----------------------------------------------------------------------------
 #  to checkout stable branch rather than develop, uncomment below two lines
@@ -59,8 +59,8 @@ sudo chown -R vagrant /opt/Sming
 # git checkout origin/master
 # -----------------------------
 
-export ESP_HOME=/opt/esp-open-sdk
-export SMING_HOME=/opt/Sming/Sming
+export ESP_HOME=$LIB_FOLDER/esp-open-sdk
+export SMING_HOME=$LIB_FOLDER/Sming/Sming
 
 cd $SMING_HOME
 make
@@ -68,8 +68,8 @@ make
 
 make spiffy
 
-echo 'export ESP_HOME=/opt/esp-open-sdk' >> ~/.profile
-echo 'export SMING_HOME=/opt/Sming/Sming' >> ~/.profile
+echo "export ESP_HOME=$LIB_FOLDER/esp-open-sdk" >> ~/.profile
+echo "export SMING_HOME=$LIB_FOLDER/Sming/Sming" >> ~/.profile
 
 
 
@@ -78,15 +78,15 @@ echo 'export SMING_HOME=/opt/Sming/Sming' >> ~/.profile
 # ==================================================================================
 
 # create /opt folder
-sudo mkdir -p /opt
+sudo mkdir -p /vagrant/lib
 
 # check out the Sming repo from github
-cd /opt
+cd /vagrant/lib
 sudo git clone https://github.com/raburton/esptool2.git
-sudo chown -R vagrant /opt/esptool2
+sudo chown -R vagrant $LIB_FOLDER/esptool2
 
 cd /opt/esptool2
 make
 
-echo 'PATH=$PATH:/opt/esptool2' >> ~/.profile
+echo "PATH=$PATH:$LIB_FOLDER/esptool2" >> ~/.profile
 
