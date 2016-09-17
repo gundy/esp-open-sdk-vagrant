@@ -17,10 +17,9 @@ sudo apt-get -y install help2man python python2.7-dev
 sudo apt-get -y install linux-image-extra-virtual
  
 # Install the esp-open-sdk toolchain
-mkdir -p /vagrant/lib
-cd /vagrant/lib
-sudo git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
-sudo chown -R vagrant esp-open-sdk
+mkdir -p $LIB_FOLDER
+cd $LIB_FOLDER
+git clone --recursive https://github.com/pfalcon/esp-open-sdk.git
 cd esp-open-sdk
 make STANDALONE=y
 
@@ -47,10 +46,8 @@ sudo apt-get install -y \
 
 
 # check out the Sming repo from github
-mkdir -p /vagrant/lib
-cd /vagrant/lib
-sudo git clone https://github.com/SmingHub/Sming.git
-sudo chown -R vagrant $LIB_FOLDER/Sming
+cd $LIB_FOLDER
+git clone https://github.com/SmingHub/Sming.git
 
 # ----------------------------------------------------------------------------
 #  to checkout stable branch rather than develop, uncomment below two lines
@@ -77,15 +74,11 @@ echo "export SMING_HOME=$LIB_FOLDER/Sming/Sming" >> ~/.profile
 #  INSTALL raburton:esptool2
 # ==================================================================================
 
-# create /opt folder
-sudo mkdir -p /vagrant/lib
-
 # check out the Sming repo from github
-cd /vagrant/lib
-sudo git clone https://github.com/raburton/esptool2.git
-sudo chown -R vagrant $LIB_FOLDER/esptool2
+cd $LIB_FOLDER
+git clone https://github.com/raburton/esptool2.git
 
-cd /opt/esptool2
+cd $LIB_FOLDER/esptool2
 make
 
 echo "PATH=$PATH:$LIB_FOLDER/esptool2" >> ~/.profile
