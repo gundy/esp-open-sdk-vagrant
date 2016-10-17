@@ -6,6 +6,9 @@
 # based on instructions at https://github.com/pfalcon/esp-open-sdk
 # .. and here: https://forum.micropython.org/viewtopic.php?t=1965
 
+# update apt-get repo details
+sudo apt-get -y update
+
 # Install required dependencies
 sudo apt-get -y install git autoconf build-essential
 sudo apt-get -y install gperf bison flex texinfo libtool libncurses5-dev wget gawk python-serial libexpat-dev dpkg-dev unzip
